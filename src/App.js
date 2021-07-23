@@ -4,13 +4,16 @@ import { AuthContextProvider } from './context/AuthContext'
 import AppHeader from './components/AppHeader'
 import AppFooter from './components/AppFooter'
 import AppBody from './components/AppBody'
+import { LanguageContextProvider } from './context/LanguageContext'
 
 function App() {
   return (
     <AuthContextProvider>
       <div className="App">
         <AppHeader />
-        <AppBody />
+        <LanguageContextProvider>
+          <AppBody />
+        </LanguageContextProvider>
         <AppFooter />
       </div>
     </AuthContextProvider>
