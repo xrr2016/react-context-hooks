@@ -1,21 +1,28 @@
 import './App.css'
-import { AuthContextProvider } from './context/AuthContext'
+import { AuthContext, AuthContextProvider } from './context/AuthContext'
+import { LanguageContextProvider } from './context/LanguageContext'
 
 import AppHeader from './components/AppHeader'
 import AppFooter from './components/AppFooter'
 import AppBody from './components/AppBody'
-import { LanguageContextProvider } from './context/LanguageContext'
 
 function App() {
   return (
     <AuthContextProvider>
-      <div className="App">
-        <AppHeader />
-        <LanguageContextProvider>
-          <AppBody />
-        </LanguageContextProvider>
-        <AppFooter />
-      </div>
+      <AuthContext.Consumer>
+        {({ isAuthenticated }) => (
+          <div
+            className="App"
+            style={{ backgroundColor: isAuthenticated ? 'pink' : '' }}
+          >
+            <AppHeader />
+            <LanguageContextProvider>
+              <AppBody />
+            </LanguageContextProvider>
+            <AppFooter />
+          </div>
+        )}
+      </AuthContext.Consumer>
     </AuthContextProvider>
   )
 }
